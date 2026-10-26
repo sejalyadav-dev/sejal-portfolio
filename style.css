@@ -1,0 +1,499 @@
+/* ---------- Colours and layout width (change these to restyle the site) ---------- */
+:root {
+  --bg: #faf8f2;
+  --surface: #fffefa;
+  --text: #2e3322;
+  --muted: #5f6650;
+  --accent: #55663f;
+  --sage: #a9b79a;
+  --sage-light: #e6ebdb;
+  --border: #dde2d0;
+  --line: #c5cfb2;
+
+  /* Keeps content inside a neat 1100px column on big screens */
+  --side: max(6%, calc((100vw - 1100px) / 2));
+}
+
+/* ---------- Global styles ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  font-family: "DM Sans", "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+h1, h2, h3 {
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--sage);
+  color: var(--text);
+}
+
+/* ---------- Header and navigation ---------- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px var(--side);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: 1.4rem;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+}
+
+nav a {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+nav a:hover,
+nav a:focus {
+  color: var(--text);
+  border-bottom-color: var(--sage);
+}
+
+/* ---------- Hero section ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 80px var(--side) 40px;
+}
+
+/* The one soft organic shape behind the hero */
+.hero::before {
+  content: "";
+  position: absolute;
+  right: calc(var(--side) - 30px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 420px;
+  height: 460px;
+  background: var(--sage-light);
+  border-radius: 62% 38% 55% 45% / 48% 58% 42% 52%;
+  z-index: 0;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 6.5rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.role {
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-size: 1.6rem;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.intro {
+  max-width: 520px;
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--text);
+  color: var(--bg);
+  padding: 14px 32px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 999px;
+  transition: background 0.25s;
+}
+
+.btn:hover,
+.btn:focus {
+  background: var(--accent);
+}
+
+.hero-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.link-secondary {
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--sage);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.link-secondary:hover,
+.link-secondary:focus {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.hero-detail {
+  align-self: stretch;
+  margin-top: 72px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+
+/* ---------- Shared section styles ---------- */
+.section {
+  padding: 110px var(--side);
+  border-top: 1px solid var(--border);
+}
+
+/* Sage background bands for Skills and Contact */
+#skills,
+#contact {
+  background: var(--sage-light);
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+/* A tiny leaf shape before each section label */
+.section-label::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  background: var(--accent);
+  border-radius: 0 100% 0 100%;
+}
+
+.section h2 {
+  font-size: 3rem;
+  margin-bottom: 48px;
+}
+
+/* ---------- About ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 64px;
+}
+
+.about-text p {
+  max-width: 560px;
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.detail {
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+}
+
+.detail:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.detail h3 {
+  font-family: "DM Sans", "Segoe UI", Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+/* ---------- Skills ---------- */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+}
+
+.skills-list li {
+  padding: 10px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.92rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.skills-list li:hover {
+  background: var(--sage);
+  border-color: var(--sage);
+}
+
+/* ---------- Projects ---------- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.project-card {
+  padding: 40px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px 32px 6px 32px;
+  transition: border-color 0.25s, transform 0.25s;
+}
+
+.project-card:hover {
+  border-color: var(--sage);
+  transform: translateY(-3px);
+}
+
+.project-number {
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.project-card h3 {
+  font-size: 1.9rem;
+  margin-bottom: 12px;
+}
+
+.project-description {
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  list-style: none;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.tech-list li {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Contact ---------- */
+.contact-intro {
+  max-width: 520px;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+.contact-list {
+  max-width: 640px;
+  list-style: none;
+}
+
+.contact-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+}
+
+.contact-list li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.contact-list a {
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.contact-list a:hover,
+.contact-list a:focus {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- Footer ---------- */
+footer {
+  text-align: center;
+  padding: 32px var(--side);
+  font-size: 0.8rem;
+  background: var(--text);
+  color: #d4dbc4;
+}
+
+/* ---------- Responsive (phones and small screens) ---------- */
+@media (max-width: 700px) {
+  html {
+    scroll-padding-top: 120px;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px var(--side);
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  nav a {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+
+  .hero {
+    padding: 56px var(--side) 32px;
+  }
+
+  .hero::before {
+    width: 240px;
+    height: 260px;
+    right: -80px;
+    top: 40px;
+    transform: none;
+  }
+
+  .hero h1 {
+    font-size: 3.6rem;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+  }
+
+  .role {
+    font-size: 1.35rem;
+  }
+
+  .hero-detail {
+    margin-top: 48px;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+  }
+
+  .section {
+    padding: 64px var(--side);
+  }
+
+  .section h2 {
+    font-size: 2.3rem;
+    margin-bottom: 32px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    padding: 28px;
+  }
+
+  .contact-list li {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .contact-list a {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* ---------- Name font fix ---------- */
+.hero h1 {
+  font-family: "DM Serif Display", Georgia, serif;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Fixed hero height (keeps full-page screenshots tidy) ---------- */
+.hero {
+  min-height: 560px;
+}
